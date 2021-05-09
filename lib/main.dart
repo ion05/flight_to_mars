@@ -1,26 +1,35 @@
+import 'package:flight_to_mars/screens/home.dart';
+import 'package:flight_to_mars/screens/register.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final _key = GlobalKey<FormState>();
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flight to Mars'),
-        ),
-        body: Form(
-          key: _key,
-          child: TextFormField(
-            decoration: InputDecoration(hintText: 'Name'),
-          ),
-        ),
-      ),
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          print('Unable to Initialize Firebase');
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+            title: 'Flight to Mars',
+            routes: {
+              "/home": (context) => HomePage(),
+              "/register": (context) => RegisterPage(),
+            },
+            home: HomePage(),
+          );
+        }
+        return CircularProgressIndicator();
+      },
     );
   }
 }
