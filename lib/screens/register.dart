@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
+final _database = FirebaseFirestore.instance;
+
 class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
+  final users = _database.collection('users');
   String name;
   String email;
   String pass;
@@ -215,6 +220,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 await _auth.createUserWithEmailAndPassword(
                                     email: email, password: pass);
                             print('Registered Sucessfully');
+                            users.add({'full_name': name, 'age': age}).then(
+                                (value) => print('User Added'));
                             Navigator.popAndPushNamed(context, '/success');
                           }
                         } catch (e) {
