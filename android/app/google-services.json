@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1001383200672",
+    "project_id": "flight-to-mars",
+    "storage_bucket": "flight-to-mars.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001383200672:android:1bd430bc867549378a86c5",
+        "android_client_info": {
+          "package_name": "com.ion.flight_to_mars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001383200672-c6fb6bv8v6kdmgo889k7d1108holr5ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBO3zgIJ9u-4wcNQGsRND-WUJBinqviOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001383200672-c6fb6bv8v6kdmgo889k7d1108holr5ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
