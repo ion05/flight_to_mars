@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/logint5');
+                Navigator.pushNamed(context, '/register');
               },
               style: ButtonStyle(
                 backgroundColor:

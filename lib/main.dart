@@ -1,3 +1,4 @@
+import 'package:flight_to_mars/screens/about.dart';
 import 'package:flight_to_mars/screens/home.dart';
 import 'package:flight_to_mars/screens/register.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
             routes: {
               "/home": (context) => HomePage(),
               "/register": (context) => RegisterPage(),
+              "/about": (context) => AboutPage()
             },
             home: HomePage(),
           );
