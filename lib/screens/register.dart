@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
   String name;
   String email;
   String pass;
@@ -43,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20.0,
                   ),
                   TextFormField(
-                    onChanged: (val) {
+                    onSaved: (val) {
                       name = val;
                     },
                     validator: (val) {
@@ -74,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           return "Please Enter a valid Email Address";
                         }
                       },
-                      onChanged: (val) {
+                      onSaved: (val) {
                         email = val;
                       },
                       decoration: InputDecoration(
@@ -119,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       }
                     },
-                    onChanged: (val) {
+                    onSaved: (val) {
                       pass = val;
                     },
                   ),
@@ -136,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       }
                     },
-                    onChanged: (val) {
+                    onSaved: (val) {
                       age = val;
                     },
                     decoration: InputDecoration(
@@ -164,7 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       }
                     },
-                    onChanged: (val) {
+                    onSaved: (val) {
                       country = val;
                     },
                     decoration: InputDecoration(
@@ -181,7 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 15.0,
                   ),
                   TextFormField(
-                    onChanged: (val) {
+                    onSaved: (val) {
                       passId = val;
                     },
                     validator: (val) {
@@ -200,7 +202,34 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.deepOrange[400]),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(28.0))),
-                  )
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  TextButton(
+                      onPressed: () async {
+                        try {
+                          _key.currentState.save();
+                          if (_key.currentState.validate()) {
+                            final user =
+                                await _auth.createUserWithEmailAndPassword(
+                                    email: email, password: pass);
+                            print('Registered Sucessfully');
+                            Navigator.popAndPushNamed(context, '/success');
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      child: Text('Register',
+                          style: TextStyle(
+                              fontFamily: "Oswald",
+                              fontSize: 20.0,
+                              color: Colors.white)),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.deepOrange[300]),
+                      ))
                 ],
               ),
             ),
