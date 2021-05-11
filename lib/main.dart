@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               "/home": (context) => HomePage(),
               "/register": (context) => RegisterPage(),
               "/about": (context) => AboutPage(),
-              '/success': (context) => SuccessfullSubmission()
+              '/success': (context) => SuccessfullSubmission(),
             },
             home: HomePage(),
           );

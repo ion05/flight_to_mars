@@ -4,7 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -25,7 +24,6 @@ class _RegisterPageState extends State<RegisterPage> {
   String passId;
   bool passHidden = true;
   bool loading = false;
-
   @override
   Widget build(BuildContext context) {
     return loading
@@ -225,11 +223,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextButton(
                           onPressed: () async {
                             try {
-                              setState(() {
-                                loading = true;
-                              });
                               _key.currentState.save();
                               if (_key.currentState.validate()) {
+                                setState(() {
+                                  loading = true;
+                                });
                                 await _auth.createUserWithEmailAndPassword(
                                     email: email, password: pass);
                                 print('Registered Sucessfully');
@@ -244,7 +242,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 setState(() {
                                   loading = false;
                                 });
-                                Navigator.popAndPushNamed(context, '/success');
+                                Navigator.popAndPushNamed(
+                                  context,
+                                  '/physical',
+                                );
                               }
                             } catch (e) {
                               print(e);
