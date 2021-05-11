@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -24,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String passId;
   bool passHidden = true;
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return loading

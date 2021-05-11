@@ -14,7 +14,7 @@ class LoadingPage extends StatelessWidget {
           children: [
             SpinKitHourGlass(
               color: Colors.deepOrange[400],
-              size: 20.0,
+              size: 50.0,
             ),
             SizedBox(
               height: 10.0,
