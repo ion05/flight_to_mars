@@ -69,6 +69,23 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/about');
               },
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            TextButton(
+              child: Text(
+                'Admin Panel',
+                style: TextStyle(
+                    fontFamily: 'Oswald', fontSize: 20.0, color: Colors.white),
+              ),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.deepOrange[300]),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/otp');
+              },
             )
           ],
         ),

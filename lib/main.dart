@@ -1,5 +1,7 @@
 import 'package:flight_to_mars/screens/about.dart';
+import 'package:flight_to_mars/screens/admin.dart';
 import 'package:flight_to_mars/screens/home.dart';
+import 'package:flight_to_mars/screens/otp.dart';
 import 'package:flight_to_mars/screens/register.dart';
 import 'package:flight_to_mars/screens/successful.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
               "/register": (context) => RegisterPage(),
               "/about": (context) => AboutPage(),
               '/success': (context) => SuccessfullSubmission(),
+              '/otp': (context) => OTPVerification(),
+              "/admin": (context) => AdminPanel()
             },
             home: HomePage(),
           );
