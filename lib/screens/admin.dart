@@ -51,7 +51,7 @@ class _AdminPanelState extends State<AdminPanel> {
                       child: Column(
                         children: [
                           ListTile(
-                              contentPadding: EdgeInsets.all(15.0),
+                              contentPadding: EdgeInsets.all(20.0),
                               leading: Text((index + 1).toString(),
                                   style: TextStyle(
                                       fontSize: 20.0,
@@ -63,7 +63,10 @@ class _AdminPanelState extends State<AdminPanel> {
                                     fontFamily: 'Oswald', fontSize: 20.0),
                               ),
                               subtitle: Text(
-                                "Age: ${temp['age']} \nCountry: ${temp['country']} \nPassport Number: ${temp['passId']}",
+                                "Age: ${temp['age']} \nCountry: ${temp['country']} \nPassport Number: ${temp['passId']} \nHeight: ${temp['height']}\nWeight: ${temp['weight']}\nMedical History: ${temp['disease']}\nReason of Participation: ${temp['reason']}",
+                                style: TextStyle(
+                                    fontFamily: 'Roboto-Condensed',
+                                    fontSize: 15.0),
                                 textAlign: TextAlign.start,
                               ),
                               trailing: IconButton(

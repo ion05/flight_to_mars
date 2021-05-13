@@ -114,7 +114,6 @@ class _OTPVerificationState extends State<OTPVerification> {
                             //   return 'Invalid Admin Phone Number. Enter with country code';
                             // }
                             else {
-                              print(valPhone);
                               return null;
                             }
                           }),
@@ -159,7 +158,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                           setState(() {
                             loading = false;
                           });
-                          Navigator.pushReplacementNamed(context, '/admin');
+                          Navigator.popAndPushNamed(context, '/admin');
                         },
                       ),
                       SizedBox(

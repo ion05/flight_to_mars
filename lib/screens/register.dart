@@ -22,6 +22,10 @@ class _RegisterPageState extends State<RegisterPage> {
   String age;
   String country;
   String passId;
+  String height;
+  String weight;
+  String disease;
+  String reason;
   bool passHidden = true;
   bool loading = false;
   @override
@@ -220,6 +224,99 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 15.0,
                       ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            hintText: 'Height (in cm)',
+                            hintStyle: TextStyle(fontFamily: 'Antonio'),
+                            prefixIcon: Icon(Icons.person,
+                                color: Colors.deepOrange[400]),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28.0))),
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Height cannot be empty';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (val) {
+                          height = "$val cm";
+                        },
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            hintText: 'Weight (in kg)',
+                            hintStyle: TextStyle(fontFamily: 'Antonio'),
+                            prefixIcon: Icon(Icons.person,
+                                color: Colors.deepOrange[400]),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28.0))),
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Weight cannot be empty';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (val) {
+                          weight = "$val kg";
+                        },
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      TextFormField(
+                        maxLines: 5,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            hintText: 'Medical History',
+                            hintMaxLines: 8,
+                            hintStyle: TextStyle(fontFamily: 'Antonio'),
+                            prefixIcon: Icon(Icons.medical_services,
+                                color: Colors.deepOrange[400]),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28.0))),
+                        onSaved: (val) {
+                          if (val.isEmpty) {
+                            disease = 'No Diseases';
+                          } else {
+                            disease = val;
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      TextFormField(
+                        maxLines: 10,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            hintText:
+                                'Why do you want to be a part of this program',
+                            hintStyle: TextStyle(fontFamily: 'Antonio'),
+                            prefixIcon: Icon(Icons.question_answer,
+                                color: Colors.deepOrange[400]),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28.0))),
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'You must give a reason';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (val) {
+                          reason = val;
+                        },
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
                       TextButton(
                           onPressed: () async {
                             try {
@@ -237,7 +334,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   'email': email,
                                   'age': int.parse(age),
                                   'country': country,
-                                  'passId': passId
+                                  'passId': passId,
+                                  'height': height,
+                                  'weight': weight,
+                                  'disease': disease,
+                                  'reason': reason
                                 }).then((value) => print('User Added'));
                                 setState(() {
                                   loading = false;

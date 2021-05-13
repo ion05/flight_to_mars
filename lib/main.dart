@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
               "/about": (context) => AboutPage(),
               '/success': (context) => SuccessfullSubmission(),
               '/otp': (context) => OTPVerification(),
-              "/admin": (context) => AdminPanel()
+              "/admin": (context) => AdminPanel(),
             },
             home: HomePage(),
           );
