@@ -1,10 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mailto/mailto.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AdminPanel extends StatefulWidget {
   @override
   _AdminPanelState createState() => _AdminPanelState();
+}
+
+void mailTo(String toMail, String name) async {
+  final mailToLink = Mailto(
+      to: [toMail],
+      subject: 'Flight To Mars Application Update',
+      body: '''
+    Dear $name,
+    I am an admin from Flight to Mars at NASA. We have the following update for your application. 
+    <Write update here>
+    Regards, 
+    Flight To Mars
+    ''');
+  await launch("$mailToLink");
 }
 
 class _AdminPanelState extends State<AdminPanel> {
@@ -31,47 +47,38 @@ class _AdminPanelState extends State<AdminPanel> {
                 return Container(
                   padding: EdgeInsets.all(10.0),
                   child: Card(
+                      shadowColor: Colors.deepOrange[400],
                       child: Column(
-                    children: [
-                      ListTile(
-                        contentPadding: EdgeInsets.all(15.0),
-                        leading: Text((index + 1).toString(),
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Oswald')),
-                        title: Text(
-                          temp["full_name"],
-                          style:
-                              TextStyle(fontFamily: 'Oswald', fontSize: 20.0),
-                        ),
-                        subtitle: Text(
-                          "Age: ${temp['age']} \n Country: ${temp['country']} \n Passport Number: ${temp['passId']}",
-                          textAlign: TextAlign.start,
-                        ),
-                      )
-                    ],
-                  )),
+                        children: [
+                          ListTile(
+                              contentPadding: EdgeInsets.all(15.0),
+                              leading: Text((index + 1).toString(),
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Oswald')),
+                              title: Text(
+                                temp["full_name"],
+                                style: TextStyle(
+                                    fontFamily: 'Oswald', fontSize: 20.0),
+                              ),
+                              subtitle: Text(
+                                "Age: ${temp['age']} \nCountry: ${temp['country']} \nPassport Number: ${temp['passId']}",
+                                textAlign: TextAlign.start,
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  mailTo(temp['email'], temp["full_name"]);
+                                },
+                                icon: Icon(Icons.email,
+                                    color: Colors.deepOrange[400]),
+                              )),
+                        ],
+                      )),
                 );
               },
             );
           },
         ));
-  }
-}
-
-class AdminPanelData extends StatefulWidget {
-  @override
-  _AdminPanelDataState createState() => _AdminPanelDataState();
-}
-
-class _AdminPanelDataState extends State<AdminPanelData> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: Text('User Data'),
-    );
   }
 }
