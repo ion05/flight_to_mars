@@ -110,9 +110,11 @@ class _OTPVerificationState extends State<OTPVerification> {
                             if (valPhone.isEmpty) {
                               return 'You must enter a valid Phone Number';
                             }
-                            if (phoneNumbers.contains(valPhone) != true) {
-                              return 'Invalid Admin Phone Number. Enter with country code';
-                            } else {
+                            // if (phoneNumbers.contains(valPhone) == false) {
+                            //   return 'Invalid Admin Phone Number. Enter with country code';
+                            // }
+                            else {
+                              print(valPhone);
                               return null;
                             }
                           }),
@@ -120,14 +122,17 @@ class _OTPVerificationState extends State<OTPVerification> {
                         height: 15.0,
                       ),
                       TextButton(
-                        child: Text('Verify Number',
+                        child: Text('Send Code',
                             style: TextStyle(color: Colors.white)),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.deepOrange[300]),
                         ),
                         onPressed: () async {
-                          verifyPhoneNumber();
+                          _key.currentState.save();
+                          if (_key.currentState.validate()) {
+                            verifyPhoneNumber();
+                          }
                         },
                       ),
                       TextFormField(
@@ -156,7 +161,10 @@ class _OTPVerificationState extends State<OTPVerification> {
                           });
                           Navigator.pushReplacementNamed(context, '/admin');
                         },
-                      )
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
                     ],
                   ),
                 )),
