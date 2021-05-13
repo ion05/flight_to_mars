@@ -16,16 +16,16 @@ To run the app on your physical device/emulator -
     OR 
     ```
     gh repo clone ion05/flight_to_mars
-  
- 3) Navigate to its directory - 
-   ``` 
-   cd flight_to_mars
    ```
+ 3) Navigate to its directory - 
+       ``` 
+       cd flight_to_mars
+       ```
 4) Install all packages 
-  ```
-  flutter pub get 
-  ```
+      ```
+      flutter pub get 
+      ```
 5) Run it 
-  ```
-  flutter run 
-  ```
+      ```
+      flutter run 
+      ```
