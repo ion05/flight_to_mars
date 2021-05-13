@@ -11,6 +11,13 @@ class _AdminPanelState extends State<AdminPanel> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Admin Panel'),
+        backgroundColor: Colors.deepOrange[400],
+        centerTitle: true,
+      ),
+      body: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(10.0),
+        child: Column(),
       ),
     );
   }

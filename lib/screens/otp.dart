@@ -93,7 +93,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                   child: Column(
                     children: [
                       TextFormField(
-                          keyboardType: TextInputType.name,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
                               hintStyle: TextStyle(fontFamily: 'Antonio')),
@@ -111,7 +111,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                               return 'You must enter a valid Phone Number';
                             }
                             if (phoneNumbers.contains(valPhone) != true) {
-                              return 'Invalid Admin Phone Number';
+                              return 'Invalid Admin Phone Number. Enter with country code';
                             } else {
                               return null;
                             }

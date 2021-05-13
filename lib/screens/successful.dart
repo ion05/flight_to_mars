@@ -12,7 +12,7 @@ class _SuccessfullSubmissionState extends State<SuccessfullSubmission> {
   @override
   void initState() {
     _controllerCenter =
-        ConfettiController(duration: const Duration(seconds: 5));
+        ConfettiController(duration: const Duration(seconds: 4));
     _controllerCenter.play();
     super.initState();
   }
@@ -38,8 +38,13 @@ class _SuccessfullSubmissionState extends State<SuccessfullSubmission> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image(
-                image: AssetImage('assets/images/green-tick.png'),
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: Image(
+                  image: AssetImage('assets/images/green-tick.png'),
+                  height: 70.0,
+                  width: 70.0,
+                ),
               ),
               SizedBox(
                 height: 10.0,
@@ -47,7 +52,7 @@ class _SuccessfullSubmissionState extends State<SuccessfullSubmission> {
               Text(
                 'Your Application has been submitted successfully',
                 style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 17.0,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Roboto-Condensed"),
               ),

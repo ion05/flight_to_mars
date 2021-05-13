@@ -244,7 +244,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 });
                                 Navigator.popAndPushNamed(
                                   context,
-                                  '/physical',
+                                  '/success',
                                 );
                               }
                             } catch (e) {
