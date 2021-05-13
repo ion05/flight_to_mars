@@ -39,7 +39,6 @@ dependencies:
   sms_autofill: ^2.0.0
   mailto: ^2.0.0
   url_launcher: ^6.0.3
-  mailer: ^5.0.0
 
 dev_dependencies:
   flutter_test:

@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
-                            hintText: "Full Name",
+                            hintText: 'Full Name',
                             hintStyle: TextStyle(fontFamily: "Antonio"),
                             prefixIcon: Icon(Icons.person,
                                 color: Colors.deepOrange[400]),
