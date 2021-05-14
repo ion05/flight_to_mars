@@ -1,4 +1,5 @@
-import 'package:flight_to_mars/screens/loading.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:flight_to_mars/global/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String email;
   String pass;
   String age;
+  String gender;
   String country = 'Select a Country';
   String passId;
   String height;
@@ -168,63 +170,69 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 15.0,
                       ),
-                      TextButton.icon(
-                        icon: Icon(
-                          Icons.location_on,
-                          color: Colors.white,
+                      SizedBox(
+                        width: double.infinity,
+                        child: DropdownButton(
+                          icon:
+                              Icon(Icons.person, color: Colors.deepOrange[400]),
+                          items: <String>['Male', 'Female', 'Non-Binary']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                          }).toList(),
+                          value: gender,
+                          hint: Text(
+                            'Gender',
+                            style: TextStyle(
+                              fontFamily: 'Antonio',
+                            ),
+                          ),
+                          onChanged: (val) {
+                            setState(() {
+                              gender = val;
+                            });
+                          },
                         ),
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.deepOrange[400])),
-                        label: Text(
-                          country,
-                          style: TextStyle(
-                              fontFamily: 'Oswald',
-                              fontSize: 16.0,
-                              color: Colors.white),
-                        ),
-                        onPressed: () {
-                          showCountryPicker(
-                              exclude: ['CU', 'IQ', 'IR', 'KP'],
-                              context: context,
-                              showPhoneCode: false,
-                              onSelect: (val) {
-                                setState(() {
-                                  country = val.displayNameNoCountryCode;
-                                });
-                              });
-                        },
                       ),
-                      // TextFormField(
-                      //   validator: (val) {
-                      //     var countryList = [
-                      //       'Iran',
-                      //       'Iraq',
-                      //       'Cuba',
-                      //       'North Korea'
-                      //     ];
-                      //     if (val.isEmpty) {
-                      //       return 'Country cannot be empty';
-                      //     }
-                      //     if (countryList.contains(val)) {
-                      //       return 'You cannot apply form this country as it is sanctioned by the United States';
-                      //     } else {
-                      //       return null;
-                      //     }
-                      //   },
-                      //   onSaved: (val) {
-                      //     country = val;
-                      //   },
-                      //   decoration: InputDecoration(
-                      //       hintText: 'Country',
-                      //       hintStyle: TextStyle(
-                      //         fontFamily: "Antonio",
-                      //       ),
-                      //       prefixIcon: Icon(Icons.location_on,
-                      //           color: Colors.deepOrange[400]),
-                      //       border: OutlineInputBorder(
-                      //           borderRadius: BorderRadius.circular(28.0))),
-                      // ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: TextButton.icon(
+                          icon: Icon(
+                            Icons.location_on,
+                            color: Colors.white,
+                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.deepOrange[400])),
+                          label: Text(
+                            country,
+                            style: TextStyle(
+                                fontFamily: 'Oswald',
+                                fontSize: 16.0,
+                                color: Colors.white),
+                          ),
+                          onPressed: () {
+                            showCountryPicker(
+                                exclude: ['CU', 'IQ', 'IR', 'KP'],
+                                context: context,
+                                showPhoneCode: false,
+                                onSelect: (val) {
+                                  setState(() {
+                                    country = val.displayNameNoCountryCode;
+                                  });
+                                });
+                          },
+                        ),
+                      ),
                       SizedBox(
                         height: 15.0,
                       ),

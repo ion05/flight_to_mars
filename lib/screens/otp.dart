@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flight_to_mars/screens/loading.dart';
+import 'package:flight_to_mars/global/adminLoading.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -19,24 +19,30 @@ class _OTPVerificationState extends State<OTPVerification> {
   String phone;
   bool loading = false;
   String otp;
+  String countryCode;
   String _verificationId;
+  String error = "";
+  String message = "";
   final SmsAutoFill _autoFill = SmsAutoFill();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   void verifyPhoneNumber() async {
     PhoneVerificationCompleted verificationCompleted =
         (PhoneAuthCredential phoneAuthCredential) async {
       await _auth.signInWithCredential(phoneAuthCredential);
-      showSnackbar(
-          "Phone number automatically verified and user signed in: ${_auth.currentUser.uid}");
+      setState(() {
+        message = 'User automatically signed in';
+      });
     };
     PhoneVerificationFailed verificationFailed =
         (FirebaseAuthException authException) {
-      showSnackbar(
-          'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
+      setState(() {
+        error = authException.toString();
+      });
     };
     PhoneCodeSent codeSent =
         (String verificationId, [int forceResendingToken]) async {
-      showSnackbar('Please check your phone for the verification code.');
+      setState(() {
+        message = 'Please check your Phone for the verification code';
+      });
       _verificationId = verificationId;
     };
     PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
@@ -53,11 +59,13 @@ class _OTPVerificationState extends State<OTPVerification> {
           codeSent: codeSent,
           codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
     } catch (e) {
-      showSnackbar("Failed to Verify Phone Number: ${e}");
+      setState(() {
+        error = e.toString();
+      });
     }
   }
 
-  void signInWithPhoneNumber() async {
+  Future<void> signInWithPhoneNumber() async {
     try {
       final AuthCredential credential = PhoneAuthProvider.credential(
         verificationId: _verificationId,
@@ -65,21 +73,19 @@ class _OTPVerificationState extends State<OTPVerification> {
       );
 
       final User user = (await _auth.signInWithCredential(credential)).user;
+      Navigator.pushReplacementNamed(context, "/admin");
     } catch (e) {
-      showSnackbar("Failed to sign in: " + e.toString());
+      setState(() {
+        error = e.toString();
+      });
     }
-  }
-
-  void showSnackbar(String message) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
   Widget build(BuildContext context) {
     return loading
-        ? LoadingPage()
+        ? AdminLoadingPage()
         : Scaffold(
-            key: _scaffoldKey,
             appBar: AppBar(
               title: Text('Verify You are an Admin'),
               centerTitle: true,
@@ -130,7 +136,13 @@ class _OTPVerificationState extends State<OTPVerification> {
                         onPressed: () async {
                           _key.currentState.save();
                           if (_key.currentState.validate()) {
+                            setState(() {
+                              loading = true;
+                            });
                             verifyPhoneNumber();
+                            setState(() {
+                              loading = false;
+                            });
                           }
                         },
                       ),
@@ -151,19 +163,35 @@ class _OTPVerificationState extends State<OTPVerification> {
                               Colors.deepOrange[300]),
                         ),
                         onPressed: () async {
-                          setState(() {
-                            loading = true;
-                          });
-                          signInWithPhoneNumber();
-                          setState(() {
-                            loading = false;
-                          });
-                          Navigator.popAndPushNamed(context, '/admin');
+                          _key.currentState.save();
+                          if (_key.currentState.validate()) {
+                            setState(() {
+                              loading = true;
+                            });
+                            await signInWithPhoneNumber();
+                            setState(() {
+                              loading = false;
+                            });
+                          }
                         },
                       ),
                       SizedBox(
                         height: 15.0,
                       ),
+                      Text(error,
+                          style: TextStyle(
+                              fontFamily: 'Roboto-Condensed',
+                              color: Colors.red)),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        message,
+                        style: TextStyle(
+                          fontFamily: 'Roboto-Condensed',
+                          color: Colors.blue[300],
+                        ),
+                      )
                     ],
                   ),
                 )),
