@@ -39,6 +39,7 @@ dependencies:
   sms_autofill: ^2.0.0
   mailto: ^2.0.0
   url_launcher: ^6.0.3
+  country_picker: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -71,4 +72,3 @@ flutter:
     - family: Antonio
       fonts:
         - asset: assets\fonts\Antonio-VariableFont_wght.ttf
-  

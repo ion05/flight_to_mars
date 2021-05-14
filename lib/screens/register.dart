@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_picker/country_picker.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String email;
   String pass;
   String age;
-  String country;
+  String country = 'Select a Country';
   String passId;
   String height;
   String weight;
@@ -167,36 +168,63 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 15.0,
                       ),
-                      TextFormField(
-                        validator: (val) {
-                          var countryList = [
-                            'Iran',
-                            'Iraq',
-                            'Cuba',
-                            'North Korea'
-                          ];
-                          if (val.isEmpty) {
-                            return 'Country cannot be empty';
-                          }
-                          if (countryList.contains(val)) {
-                            return 'You cannot apply form this country as it is sanctioned by the United States';
-                          } else {
-                            return null;
-                          }
+                      TextButton.icon(
+                        icon: Icon(
+                          Icons.location_on,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.deepOrange[400])),
+                        label: Text(
+                          country,
+                          style: TextStyle(
+                              fontFamily: 'Oswald',
+                              fontSize: 16.0,
+                              color: Colors.white),
+                        ),
+                        onPressed: () {
+                          showCountryPicker(
+                              exclude: ['CU', 'IQ', 'IR', 'KP'],
+                              context: context,
+                              showPhoneCode: false,
+                              onSelect: (val) {
+                                setState(() {
+                                  country = val.displayNameNoCountryCode;
+                                });
+                              });
                         },
-                        onSaved: (val) {
-                          country = val;
-                        },
-                        decoration: InputDecoration(
-                            hintText: 'Country',
-                            hintStyle: TextStyle(
-                              fontFamily: "Antonio",
-                            ),
-                            prefixIcon: Icon(Icons.location_on,
-                                color: Colors.deepOrange[400]),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(28.0))),
                       ),
+                      // TextFormField(
+                      //   validator: (val) {
+                      //     var countryList = [
+                      //       'Iran',
+                      //       'Iraq',
+                      //       'Cuba',
+                      //       'North Korea'
+                      //     ];
+                      //     if (val.isEmpty) {
+                      //       return 'Country cannot be empty';
+                      //     }
+                      //     if (countryList.contains(val)) {
+                      //       return 'You cannot apply form this country as it is sanctioned by the United States';
+                      //     } else {
+                      //       return null;
+                      //     }
+                      //   },
+                      //   onSaved: (val) {
+                      //     country = val;
+                      //   },
+                      //   decoration: InputDecoration(
+                      //       hintText: 'Country',
+                      //       hintStyle: TextStyle(
+                      //         fontFamily: "Antonio",
+                      //       ),
+                      //       prefixIcon: Icon(Icons.location_on,
+                      //           color: Colors.deepOrange[400]),
+                      //       border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(28.0))),
+                      // ),
                       SizedBox(
                         height: 15.0,
                       ),
