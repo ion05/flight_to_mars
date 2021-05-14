@@ -12,7 +12,7 @@ class _SuccessfullSubmissionState extends State<SuccessfullSubmission> {
   @override
   void initState() {
     _controllerCenter =
-        ConfettiController(duration: const Duration(seconds: 4));
+        ConfettiController(duration: const Duration(seconds: 3));
     _controllerCenter.play();
     super.initState();
   }

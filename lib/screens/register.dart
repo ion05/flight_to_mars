@@ -31,6 +31,8 @@ class _RegisterPageState extends State<RegisterPage> {
   String reason;
   bool passHidden = true;
   bool loading = false;
+  RegExp indianPassport = RegExp(r"^[A-PR-WYa-pr-wy][1-9]\d{5}[1-9]$");
+  RegExp usPassport = RegExp(r"^(?!(0))[a-zA-Z0-9]{6,9}$");
   @override
   Widget build(BuildContext context) {
     return loading
@@ -243,6 +245,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         validator: (val) {
                           if (val.isEmpty) {
                             return 'You must enter your passport id number';
+                          }
+                          if (country == "India (IN)") {
+                            if (!indianPassport.hasMatch(val)) {
+                              return 'Invalid Indian Passport Number';
+                            }
+                          }
+                          if (country == 'United States (US)') {
+                            if (!usPassport.hasMatch(val)) {
+                              return 'Invalid American Passport Number';
+                            }
                           } else {
                             return null;
                           }
