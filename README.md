@@ -34,3 +34,15 @@ To run the app on your physical device/emulator -
 To access the admin Panel, only the numbers of the following indivuals are valid
 1) Aayan Agarwal
 2) Oorjit Chowdhary
+
+# Screenshots
+1) Home Page <br>
+    <img src="https://github.com/ion05/flight_to_mars/blob/main/screenshots/flutter_01.png">
+2) About Page <br>
+    <img src="https://github.com/ion05/flight_to_mars/blob/main/screenshots/flutter_02.png">
+3) Register Page <br>
+    <img src="https://github.com/ion05/flight_to_mars/blob/main/screenshots/flutter_03.png">
+4) OTP Verification Page
+    <img src="https://github.com/ion05/flight_to_mars/blob/main/screenshots/flutter_08.png">
+4) Admin Panel
+    <img src="https://github.com/ion05/flight_to_mars/blob/main/screenshots/flutter_09.png">
