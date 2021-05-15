@@ -63,7 +63,7 @@ class _AdminPanelState extends State<AdminPanel> {
                                     fontFamily: 'Oswald', fontSize: 20.0),
                               ),
                               subtitle: Text(
-                                "Age: ${temp['age']} \nCountry: ${temp['country']} \nPassport Number: ${temp['passId']} \nHeight: ${temp['height']}\nWeight: ${temp['weight']}\nMedical History: ${temp['disease']}\nReason of Participation: ${temp['reason']}",
+                                "Age: ${temp['age']}\nGender: ${temp['gender']} \nCountry: ${temp['country']} \nPassport Number: ${temp['passId']} \nHeight: ${temp['height']}\nWeight: ${temp['weight']}\nMedical History: ${temp['disease']}\nReason of Participation: ${temp['reason']}",
                                 style: TextStyle(
                                     fontFamily: 'Roboto-Condensed',
                                     fontSize: 15.0),

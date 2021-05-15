@@ -57,7 +57,6 @@ flutter:
   assets:
     - assets/images/logo.jpg
     - assets/images/mars_base.jpg
-    - assets/images/space_trip.jpg
     - assets/images/pd.jpg
     - assets/images/green-tick.png
 

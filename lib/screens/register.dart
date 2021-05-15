@@ -375,19 +375,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                 });
                                 await _auth.createUserWithEmailAndPassword(
                                     email: email, password: pass);
-                                print('Registered Sucessfully');
                                 final currentUser = _auth.currentUser;
                                 await users.doc(currentUser.uid).set({
                                   'full_name': name,
                                   'email': email,
                                   'age': int.parse(age),
+                                  'gender': gender,
                                   'country': country,
                                   'passId': passId,
                                   'height': height,
                                   'weight': weight,
                                   'disease': disease,
                                   'reason': reason
-                                }).then((value) => print('User Added'));
+                                });
                                 setState(() {
                                   loading = false;
                                 });

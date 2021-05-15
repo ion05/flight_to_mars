@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
-  final aboutMission = '''
-    Over the past decades, the efforts by scientists and other personnel at NASA and SpaceX have resulted in the establishment of the first colony on Mars. For the past few years, only scientists and experts have been allowed on this colony. 
-  ''';
-  final spaceTrip = '''
- However, NASA has now decided to allow selected 50 volunteers to the take the first commericial trip to Mars for tourism. 
-    This trip is scheduled to begin in about a year from now after the volunteers undergo rigourous training and tests to determine their physcial and mental fitness for the ride. This trip will cost just 500,000 dollars including all training. Be sure, to check out the requirements to see if you are eligible.  
-  ''';
-
   final requirements = '''
   Apart from general physical and mental fitness, all applicants must meet the following criteria on the day they are submitting their application:
   1) Must be 21 Years of Age
@@ -35,29 +27,10 @@ class AboutPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                aboutMission,
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed felis tincidunt nisl pharetra fermentum quis sed mauris. Integer dictum risus at risus elementum euismod. Phasellus risus dui, hendrerit nec turpis nec, fermentum aliquam mauris. Donec pellentesque facilisis nunc, at dapibus dui pulvinar et',
                 textAlign: TextAlign.justify,
                 style:
                     TextStyle(fontFamily: "Roboto-Condensed", fontSize: 18.0),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Image(
-                image: AssetImage('assets/images/mars_base.jpg'),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                spaceTrip,
-                textAlign: TextAlign.justify,
-                style:
-                    TextStyle(fontFamily: 'Roboto-Condensed', fontSize: 18.0),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Image(
-                image: AssetImage('assets/images/space_trip.jpg'),
               ),
               SizedBox(
                 height: 20.0,
@@ -69,6 +42,9 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(
                 height: 5.0,
+              ),
+              Image(
+                image: AssetImage('assets/images/mars_base.jpg'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

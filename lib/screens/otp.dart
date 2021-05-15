@@ -116,10 +116,9 @@ class _OTPVerificationState extends State<OTPVerification> {
                             if (valPhone.isEmpty) {
                               return 'You must enter a valid Phone Number';
                             }
-                            // if (phoneNumbers.contains(valPhone) == false) {
-                            //   return 'Invalid Admin Phone Number. Enter with country code';
-                            // }
-                            else {
+                            if (phoneNumbers.contains(valPhone) == false) {
+                              return 'Invalid Admin Phone Number. Enter with country code';
+                            } else {
                               return null;
                             }
                           }),
