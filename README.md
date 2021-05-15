@@ -31,6 +31,6 @@ To run the app on your physical device/emulator -
       ```
       
 # Admin Panel
-To access the admin panel: 
-Number = +11234567890 (Country code is must) 
-Code = 111111
+To access the admin Panel, only the numbers of the following indivuals are valid
+1) Aayan Agarwal
+2) Oorjit Chowdhary
